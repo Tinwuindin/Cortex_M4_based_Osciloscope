@@ -60,3 +60,13 @@ osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue
 osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 osciloscope\freertos.o: ../Core/Inc/adc.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_lcd.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../../../Utilities/Fonts/fonts.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/ili9341/ili9341.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/ili9341/../Common/lcd.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_ts.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/stmpe811.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/../Common/ts.h
+osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/../Common/io.h

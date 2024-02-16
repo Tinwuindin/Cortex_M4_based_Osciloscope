@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "adc.h"
+#include "stm32f429i_discovery.h"
+#include "stm32f429i_discovery_lcd.h"
+#include "stm32f429i_discovery_ts.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -161,7 +164,7 @@ void MX_FREERTOS_Init(void) {
   ScreenHandle = osThreadCreate(osThread(Screen), NULL);
 
   /* definition and creation of ADC */
-  osThreadDef(ADC, ADC_Ctrl, osPriorityNormal, 0, 128);
+  osThreadDef(ADC, ADC_Ctrl, osPriorityAboveNormal, 0, 128);
   ADCHandle = osThreadCreate(osThread(ADC), NULL);
 
   /* definition and creation of DAC */
@@ -203,8 +206,43 @@ void Screen_task(void const * argument)
 {
   /* USER CODE BEGIN Screen_task */
   /* Infinite loop */
+	
+	uint16_t Sc_W = 238; // Width of the screen
+	uint16_t Sc_H = 101; // Height og the screen
+	uint16_t qw, step = 0;
+	uint16_t resize_factor = 41;
+	float plot_data;
   for(;;)
   {
+		
+		/* Working with primitive graphics */
+		
+		// Background of where r the screen
+		BSP_LCD_SetTextColor(LCD_COLOR_BLACK); // Put black the background
+		BSP_LCD_FillRect(1,1,Sc_W,Sc_H); // Clear the backgroud
+		BSP_LCD_SetTextColor(LCD_COLOR_WHITE); // Put color to the midline
+		BSP_LCD_DrawLine(1, Sc_H / 2, Sc_W, Sc_H / 2); // Draw the midline
+		
+		// Plot the data from the ADC
+		for(qw = 1; qw <= Sc_W; qw++){
+			plot_data = (float)ADC_Lecture[step]; // get the data of the ADC
+			if(step != 100)
+					step++; // move 1 the data to read
+			else 
+				step = 0; // return to the start
+			plot_data -= 2047; // remove the offset (1.5)
+			plot_data /= 4095; // divide by the resolution (12 bits)
+			plot_data *= 3; // multiply by the voltage reference
+			plot_data /= resize_factor; // Adjust to the actual zoom
+			if(plot_data > 0){// Voltage is positive
+				BSP_LCD_SetTextColor(LCD_COLOR_LIGHTBLUE);
+				BSP_LCD_DrawVLine(qw, (Sc_H - 1) / 2 + 1, plot_data);// draw a line with the lenght of the data 
+			}else{
+				BSP_LCD_SetTextColor(LCD_COLOR_DARKBLUE);
+				BSP_LCD_DrawVLine(qw, ((Sc_H - 1) / 2 + 1) - plot_data, plot_data);// draw a line with the lenght of the data
+			}
+			
+		}
     osDelay(1);
   }
   /* USER CODE END Screen_task */
@@ -224,7 +262,7 @@ void ADC_Ctrl(void const * argument)
   for(;;)
   {
 		if(HAL_ADC_GetState(&hadc3) == HAL_ADC_STATE_READY){ // If the ADC isn't ready wait to start the lectures
-			HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100); // Get 100 lectures every 1ms (it should give an 100kHz freq)
+			HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100); // Get 100 lectures every 1ms (it should give an 100kHz freq of sampling)
 		}
     osDelay(1);
   }

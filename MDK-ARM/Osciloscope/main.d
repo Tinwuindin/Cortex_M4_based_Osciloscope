@@ -81,4 +81,3 @@ osciloscope\main.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/
 osciloscope\main.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/stmpe811.h
 osciloscope\main.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/../Common/ts.h
 osciloscope\main.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/../Components/stmpe811/../Common/io.h
-osciloscope\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
