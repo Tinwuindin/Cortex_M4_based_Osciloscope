@@ -1,4 +1,6 @@
+# Challenger NA Main yasuo
 # Expected
+
 It should be (at least in my mind):
 * a simple osciloscope with 100kHz of max freq sample for every type of signals 
 * at least 1MHz of clk signals (square with only 2 states)
