@@ -57,7 +57,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint16_t ADC_Lecture[10];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -123,7 +122,6 @@ int main(void)
 	BSP_LCD_Clear(LCD_COLOR_WHITE);
 	BSP_TS_Init(240,320);
 	BSP_LCD_SetFont(&Font16);
-	
 	
 	
 //	extern uint8_t Linea;

@@ -48,12 +48,13 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-extern uint16_t ADC_Lecture[100];
+uint16_t ADC_Lecture[1000];
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId ScreenHandle;
 osThreadId ADCHandle;
 osThreadId DACHandle;
+osMessageQId ADC_dataHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -150,6 +151,11 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* definition and creation of ADC_data */
+  osMessageQDef(ADC_data, 100, uint16_t);
+  ADC_dataHandle = osMessageCreate(osMessageQ(ADC_data), NULL);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -209,37 +215,39 @@ void Screen_task(void const * argument)
 	
 	uint16_t Sc_W = 238; // Width of the screen
 	uint16_t Sc_H = 101; // Height og the screen
-	uint16_t qw, step = 0;
-	uint16_t resize_factor = 41;
+	uint16_t qw, step = 100;
+	float resize_factor = 0.03;
 	float plot_data;
+	// Background of where r the screen
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK); // Put black the background
+			BSP_LCD_FillRect(1,1,Sc_W,Sc_H); // Clear the backgroud	
   for(;;)
   {
-		
-		/* Working with primitive graphics */
-		
-		// Background of where r the screen
-		BSP_LCD_SetTextColor(LCD_COLOR_BLACK); // Put black the background
-		BSP_LCD_FillRect(1,1,Sc_W,Sc_H); // Clear the backgroud
-		BSP_LCD_SetTextColor(LCD_COLOR_WHITE); // Put color to the midline
-		BSP_LCD_DrawLine(1, Sc_H / 2, Sc_W, Sc_H / 2); // Draw the midline
-		
 		// Plot the data from the ADC
 		for(qw = 1; qw <= Sc_W; qw++){
-			plot_data = (float)ADC_Lecture[step]; // get the data of the ADC
-			if(step != 100)
+			if(step != 1000)
 					step++; // move 1 the data to read
-			else 
+			else{
 				step = 0; // return to the start
+			}
+			/* Working with primitive graphics */
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK); // Background color
+			BSP_LCD_DrawVLine(qw, 1,Sc_H); // Clean the data line
+			BSP_LCD_SetTextColor(LCD_COLOR_WHITE); // Put color to the midline
+			BSP_LCD_DrawLine(1, Sc_H / 2, Sc_W, Sc_H / 2); // Draw the midline
+			
+			plot_data = (float)ADC_Lecture[step]; // get the data of the ADC
+			
 			plot_data -= 2047; // remove the offset (1.5)
 			plot_data /= 4095; // divide by the resolution (12 bits)
 			plot_data *= 3; // multiply by the voltage reference
 			plot_data /= resize_factor; // Adjust to the actual zoom
 			if(plot_data > 0){// Voltage is positive
-				BSP_LCD_SetTextColor(LCD_COLOR_LIGHTBLUE);
-				BSP_LCD_DrawVLine(qw, (Sc_H - 1) / 2 + 1, plot_data);// draw a line with the lenght of the data 
+				BSP_LCD_SetTextColor(LCD_COLOR_LIGHTRED);
+				BSP_LCD_DrawLine(qw, ((Sc_H - 1) / 2 - 1), qw, ((Sc_H - 1) / 2 - 1) - plot_data);// draw a line with the lenght of the data 
 			}else{
 				BSP_LCD_SetTextColor(LCD_COLOR_DARKBLUE);
-				BSP_LCD_DrawVLine(qw, ((Sc_H - 1) / 2 + 1) - plot_data, plot_data);// draw a line with the lenght of the data
+				BSP_LCD_DrawVLine(qw, ((Sc_H - 1) / 2 + 1), plot_data * -1);// draw a line with the lenght of the data
 			}
 			
 		}
@@ -259,11 +267,15 @@ void ADC_Ctrl(void const * argument)
 {
   /* USER CODE BEGIN ADC_Ctrl */
   /* Infinite loop */
+	HAL_ADC_Start_DMA(&hadc1,(uint32_t *)ADC_Lecture,1000); // Get 100 lectures every 1ms (it should give an 100kHz freq of sampling)
+	
   for(;;)
   {
-		if(HAL_ADC_GetState(&hadc3) == HAL_ADC_STATE_READY){ // If the ADC isn't ready wait to start the lectures
-			HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100); // Get 100 lectures every 1ms (it should give an 100kHz freq of sampling)
-		}
+		//if(HAL_ADC_GetState(&hadc3) == HAL_ADC_STATE_REG_EOC){ // If the ADC isn't ready wait to start the lectures
+			
+		//}
+		//xQueueSend(ADC_dataHandle, &ADC_Lecture,((TickType_t) 100)); // Send the data
+		
     osDelay(1);
   }
   /* USER CODE END ADC_Ctrl */
