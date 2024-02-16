@@ -57,7 +57,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint16_t ADC_Lecture[10];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -125,21 +125,21 @@ int main(void)
 	BSP_LCD_SetFont(&Font16);
 	
 	
-	uint16_t ADC_Lecture[10];
-	extern uint8_t Linea;
-	#include <stdio.h>
-	HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100);
-  
-	for(;;)
-  {
-		
-		for(uint16_t i = 0; i < 10; i++){
-			Linea = i;
-			printf("%d\n",ADC_Lecture[i]);
-			HAL_Delay(50);
-		}
-		
-  }
+	
+//	extern uint8_t Linea;
+//	#include <stdio.h>
+//	HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,10);
+//  
+//	for(;;)
+//  {
+//		
+//		for(uint16_t i = 0; i < 10; i++){
+//			Linea = i;
+//			printf("%d\n",ADC_Lecture[i]);
+//			HAL_Delay(50);
+//		}
+//		HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,10);
+//  }
 	
 	
   /* USER CODE END 2 */

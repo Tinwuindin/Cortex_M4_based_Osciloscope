@@ -45,7 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+extern uint16_t ADC_Lecture[100];
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId ScreenHandle;
@@ -223,11 +223,9 @@ void ADC_Ctrl(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		/*HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100);
-		for(uint16_t i = 0; i < sizeof(ADC_Lecture); i++){
-			printf("%d\n",ADC_Lecture[i]);
-			Linea++;
-		}*/
+		if(HAL_ADC_GetState(&hadc3) == HAL_ADC_STATE_READY){ // If the ADC isn't ready wait to start the lectures
+			HAL_ADC_Start_DMA(&hadc3,(uint32_t *)ADC_Lecture,100); // Get 100 lectures every 1ms (it should give an 100kHz freq)
+		}
     osDelay(1);
   }
   /* USER CODE END ADC_Ctrl */
