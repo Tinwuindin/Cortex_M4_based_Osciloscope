@@ -60,6 +60,7 @@ osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue
 osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 osciloscope\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 osciloscope\freertos.o: ../Core/Inc/adc.h
+osciloscope\freertos.o: ../Core/Inc/tim.h
 osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.h
 osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_lcd.h
 osciloscope\freertos.o: ../../../../../STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.h

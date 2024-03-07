@@ -229,10 +229,16 @@ void Error_Handler(void);
 #define LD4_GPIO_Port GPIOG
 #define SDNCAS_Pin GPIO_PIN_15
 #define SDNCAS_GPIO_Port GPIOG
+#define A_encoder_Pin GPIO_PIN_3
+#define A_encoder_GPIO_Port GPIOB
+#define B_encoder_Pin GPIO_PIN_4
+#define B_encoder_GPIO_Port GPIOB
 #define SDCKE1_Pin GPIO_PIN_5
 #define SDCKE1_GPIO_Port GPIOB
 #define SDNE1_Pin GPIO_PIN_6
 #define SDNE1_GPIO_Port GPIOB
+#define Button_encoder_Pin GPIO_PIN_7
+#define Button_encoder_GPIO_Port GPIOB
 #define B6_Pin GPIO_PIN_8
 #define B6_GPIO_Port GPIOB
 #define B7_Pin GPIO_PIN_9

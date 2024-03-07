@@ -108,9 +108,9 @@ int main(void)
   MX_SPI5_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
-  MX_ADC3_Init();
   MX_DAC_Init();
   MX_ADC1_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 	/* Inicializacion de los drivers BSP para la pantalla */
 	BSP_SDRAM_Init();
