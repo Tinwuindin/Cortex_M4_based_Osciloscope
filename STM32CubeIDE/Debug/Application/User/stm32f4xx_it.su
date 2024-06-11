@@ -1,0 +1,13 @@
+C:/TouchGFXProjects/Osciloscopio/STM32CubeIDE/Func/Func.h:24:6:ADC_ticker	24	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:80:6:NMI_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:93:6:HardFault_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:108:6:MemManage_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:123:6:BusFault_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:138:6:UsageFault_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:153:6:DebugMon_Handler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:173:6:ADC_IRQHandler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:188:6:TIM6_DAC_IRQHandler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:202:6:TIM7_IRQHandler	8	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:227:6:DMA2_Stream4_IRQHandler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:241:6:LTDC_IRQHandler	0	static
+C:/TouchGFXProjects/Osciloscopio/Core/Src/stm32f4xx_it.c:255:6:DMA2D_IRQHandler	0	static

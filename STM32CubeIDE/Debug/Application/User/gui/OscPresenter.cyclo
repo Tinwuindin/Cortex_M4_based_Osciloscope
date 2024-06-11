@@ -1,0 +1,5 @@
+../../TouchGFX/gui/include/gui/osc_screen/OscPresenter.hpp:28:13:OscPresenter::~OscPresenter()	1
+C:/TouchGFXProjects/Osciloscopio/TouchGFX/gui/src/osc_screen/OscPresenter.cpp:10:6:virtual void OscPresenter::activate()	1
+../../TouchGFX/gui/include/gui/osc_screen/OscPresenter.hpp:28:13:virtual OscPresenter::~OscPresenter()	1
+../../TouchGFX/gui/include/gui/osc_screen/OscPresenter.hpp:28:13:virtual void* OscPresenter::_ZThn4_N12OscPresenterD1Ev()	1
+C:/TouchGFXProjects/Osciloscopio/TouchGFX/gui/src/osc_screen/OscPresenter.cpp:4:1:OscPresenter::OscPresenter(OscView&)	1

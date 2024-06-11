@@ -1,0 +1,469 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Menu",
+        "Components": [
+          {
+            "Type": "SwipeContainer",
+            "Name": "Osc",
+            "Width": 320,
+            "Height": 240,
+            "SwipeCutoff": 50,
+            "ShowPageIndicator": true,
+            "PageIndicatorX": 140,
+            "PageIndicatorY": 220,
+            "CenteredX": true,
+            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
+            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
+            "EndSwipeElasticWidth": 50,
+            "SelectedPage": "gen",
+            "Preset": "alternate_theme\\presets\\swipecontainer\\medium_active.json",
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "osc",
+                "Width": 320,
+                "Height": 240,
+                "Components": [
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage1",
+                    "X": 20,
+                    "Y": 61,
+                    "Width": 140,
+                    "Height": 140,
+                    "Filename": "A2_re.png",
+                    "ScalingAlgorithm": "Nearest-neighbor"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "flexButton1",
+                    "X": 207,
+                    "Y": 113,
+                    "Width": 91,
+                    "Height": 37,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "TextButtonStyle",
+                        "Y": 11,
+                        "TextId": "__SingleUse_HHNG",
+                        "TextRotation": "0",
+                        "ColorReleased": {
+                          "Red": 10,
+                          "Green": 10,
+                          "Blue": 10
+                        },
+                        "ColorPressed": {
+                          "Red": 10,
+                          "Green": 10,
+                          "Blue": 10
+                        }
+                      },
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 91,
+                        "Height": 37,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "textArea1",
+                    "X": 46,
+                    "Y": 13,
+                    "Width": 229,
+                    "Height": 49,
+                    "TextId": "__SingleUse_55WG",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true,
+                    "WideTextAction": 1
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "gen",
+                "Width": 320,
+                "Height": 240,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "textArea2",
+                    "X": 71,
+                    "Y": 25,
+                    "Width": 167,
+                    "Height": 24,
+                    "TextId": "__SingleUse_RG06",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "flexButton2",
+                    "X": 207,
+                    "Y": 113,
+                    "Width": 91,
+                    "Height": 37,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "TextButtonStyle",
+                        "Y": 11,
+                        "TextId": "__SingleUse_U1MG",
+                        "TextRotation": "0",
+                        "ColorReleased": {
+                          "Red": 10,
+                          "Green": 10,
+                          "Blue": 10
+                        },
+                        "ColorPressed": {
+                          "Red": 10,
+                          "Green": 10,
+                          "Blue": 10
+                        }
+                      },
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 91,
+                        "Height": 37,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage2",
+                    "X": 20,
+                    "Y": 91,
+                    "Width": 140,
+                    "Height": 80,
+                    "Filename": "A3_re.png",
+                    "ScalingAlgorithm": "Nearest-neighbor"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Go_osc",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "South",
+              "ActionComponent": "Osc"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Osc",
+        "CanvasBufferSize": 4800,
+        "Components": [
+          {
+            "Type": "DynamicGraph",
+            "Name": "dynamicGraph1",
+            "Width": 320,
+            "Height": 150,
+            "DataSeed": -1139153731,
+            "NumberOfValues": 320,
+            "MaxY": 3.4,
+            "Precision": "0.01",
+            "LastIndex": 319,
+            "XAxisScale": 1.0,
+            "GraphType": "GraphWrapOverwrite",
+            "VerticalFrontline": {
+              "Type": "GraphVerticalFrontline",
+              "Color": {
+                "Red": 20,
+                "Green": 151,
+                "Blue": 197
+              },
+              "GapLineWidth": 1
+            },
+            "GraphDrawers": [
+              {
+                "Type": "LineDrawer",
+                "LineWidth": 2,
+                "FileNameImage": "",
+                "Color": {
+                  "Red": 255,
+                  "Green": 194,
+                  "Blue": 51
+                }
+              }
+            ],
+            "XAxisGrid": {
+              "Type": "GraphGrid",
+              "Color": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 255
+              },
+              "Interval": 64.0,
+              "LineWidth": 1
+            },
+            "YAxisGrid": {
+              "Type": "GraphGrid",
+              "Color": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 255
+              },
+              "Interval": 1.0,
+              "LineWidth": 1
+            }
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "flexButton1",
+            "Y": 214,
+            "Width": 50,
+            "Height": 26,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "Y": 5,
+                "TextId": "__SingleUse_UF9O",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "ColorPressed": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                }
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 50,
+                "Height": 26,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 5,
+                "ColorReleased": {
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "menos",
+            "X": 90,
+            "Y": 174,
+            "Width": 50,
+            "Height": 50,
+            "ButtonTrigger": {
+              "Type": "RepeatButtonTrigger",
+              "Delay": 5,
+              "Interval": 5
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "IconReleased": "__generated\\icon_theme_images_content_remove_circle_50_50_E8F6FB.svg.png",
+                "IconPressed": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png"
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "mas",
+            "X": 180,
+            "Y": 174,
+            "Width": 50,
+            "Height": 50,
+            "ButtonTrigger": {
+              "Type": "RepeatButtonTrigger",
+              "Delay": 5,
+              "Interval": 5
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "IconReleased": "__generated\\icon_theme_images_content_add_circle_50_50_E8F6FB.svg.png",
+                "IconPressed": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png"
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Go_home",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "Menu"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "menos"
+            },
+            "Action": {
+              "Type": "ActionExecuteCode",
+              "Includes": "#include \"stm32f4xx_hal.h\"\r\n#include \"main.h\"",
+              "Code": "if((TIM7 ->PSC & 0xFFFF) < 2000){\r\n\t\r\n\tTIM7 -> PSC = TIM7 -> PSC + 1;\r\n\r\n}"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "mas"
+            },
+            "Action": {
+              "Type": "ActionExecuteCode",
+              "Includes": "#include \"main.h\"\r\n#include \"stm32f4xx_hal.h\"",
+              "Code": "if((TIM7 ->PSC & 0xFFFF) > 1){\r\n\t\r\n\tTIM7 -> PSC = TIM7 -> PSC - 1;\r\n\r\n}"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "Osciloscopio",
+    "Resolution": {
+      "Width": 240,
+      "Height": 320
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "Menu",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 240,
+        "Height": 320
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommandOverride": "make -f ../gcc/Makefile -j8",
+    "FlashTargetCommandOverride": "make -f ../gcc/Makefile flash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F429/439",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../STM32F429I_DISCO_REV_E01.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": [
+      "CWRVector",
+      "VectorFonts"
+    ]
+  },
+  "Version": "4.23.0",
+  "CreatedBy": "4.23.0"
+}

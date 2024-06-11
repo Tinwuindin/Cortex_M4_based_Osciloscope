@@ -6,12 +6,13 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -22,7 +23,8 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "adc.h"
+#include "Func.h"
+#include "stm32f4xx_hal.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,7 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+ 
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -42,7 +44,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-float s;
+extern float valor;
+extern int pasos;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,13 +60,14 @@ float s;
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
-extern DAC_HandleTypeDef hdac;
+extern ADC_HandleTypeDef hadc1;
 extern DMA2D_HandleTypeDef hdma2d;
 extern LTDC_HandleTypeDef hltdc;
 extern TIM_HandleTypeDef htim7;
 extern TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN EV */
+extern uint16_t adc_values[320];
 
 /* USER CODE END EV */
 
@@ -79,9 +83,7 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-   while (1)
-  {
-  }
+
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
@@ -166,6 +168,21 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
+  */
+void ADC_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC_IRQn 0 */
+
+  /* USER CODE END ADC_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadc1);
+  /* USER CODE BEGIN ADC_IRQn 1 */
+  //HAL_ADC_Stop_DMA(&hadc1);
+  //HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&adc_values, 320);
+  /* USER CODE END ADC_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM6 global interrupt, DAC1 and DAC2 underrun error interrupts.
   */
 void TIM6_DAC_IRQHandler(void)
@@ -173,9 +190,6 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
 
   /* USER CODE END TIM6_DAC_IRQn 0 */
-  if (hdac.State != HAL_DAC_STATE_RESET) {
-    HAL_DAC_IRQHandler(&hdac);
-  }
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
@@ -188,61 +202,22 @@ void TIM6_DAC_IRQHandler(void)
 void TIM7_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_IRQn 0 */
-	extern uint32_t ADC_data;
-	extern volatile uint16_t plot_size;
-	uint8_t m = 0;
-	float sleep = 0.0;
-	uint32_t proceso;
-	if(sleep != 0.0){
-		if(!(sleep / 1 > 1)){
-			sleep *= 65536; // Restore the extra count 
-			TIM7 -> CNT = 65536 - sleep; // Load the extra count for make a overflow at the right time
-			sleep = 0.0;
-		}else 
-			sleep --;
+	pasos ++;
+	HAL_GPIO_TogglePin(GPIOG, GPIO_PIN_14);
+	if(pasos < 100){
+		valor = (HAL_ADC_GetValue(&hadc1));
+		valor = valor * 3.3 / 4095; // Leemos el adc
+		HAL_TIM_IRQHandler(&htim7);
+		  /* USER CODE BEGIN TIM7_IRQn 1 */
+		    HAL_TIM_Base_Start(&htim7); // volvemos a inicar el timer
+		    HAL_ADC_Start(&hadc1); // volvemos a iniciar el adc
+		  /* USER CODE END TIM7_IRQn 1 */
 	}else{
-		HAL_ADC_Start_DMA(&hadc1,(uint32_t *)s,1); // Start the ADC conversion
-		// Calculate the time to take another sample
-		m = plot_size % 9; // Select the time value
-		//         MCU FREQ              SCALE
-		proceso = 1800000000 / 1 * (10 * plot_size / 9);
-		proceso = proceso / 50; // 50 pixels per time section
-		switch (m){
-			case 0:
-				proceso *= 500; // time value
-				break;
-			case 1:
-				proceso *= 250; // time value
-				break;
-			case 2:
-				proceso *= 100; // time value
-				break;
-			case 3:
-				proceso *= 50; // time value
-				break;
-			case 4:
-				proceso *= 25; // time value
-				break;
-			case 5:
-				proceso *= 10; // time value
-				break;
-			case 6:
-				proceso *= 5; // time value
-				break;
-			case 7:
-				proceso *= 2; // time value
-				break;
-			case 8:
-				// * 1 not needed
-				break;
-			sleep = (float)(proceso / 65536);
-			TIM7 -> CNT = 0;
-		}
-	}
   /* USER CODE END TIM7_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
   /* USER CODE BEGIN TIM7_IRQn 1 */
-
+  //HAL_TIM_Base_Start(&htim7); // volvemos a inicar el timer
+  HAL_ADC_Start(&hadc1);}// volvemos a iniciar el adc
   /* USER CODE END TIM7_IRQn 1 */
 }
 
@@ -252,23 +227,11 @@ void TIM7_IRQHandler(void)
 void DMA2_Stream4_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA2_Stream4_IRQn 0 */
-	extern volatile uint8_t adc_new;
-	extern uint16_t ADC_Lecture[1000];
-	uint16_t j = 0;
+
   /* USER CODE END DMA2_Stream4_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_adc1);
   /* USER CODE BEGIN DMA2_Stream4_IRQn 1 */
-	adc_new ++;
-	// Convert to voltage
-	s = (float)(s * 3.3); // Reference voltage
-	s /= 4095; // Maxium ADC value
-	// Convert to data for the screen
-	s *= 100; // Times per pixel in plot
-	s /= 3.3; // Divided by the max voltage
-	ADC_Lecture[j] = s;
-	j++;
-	if(j == 1000)
-		j = 0;
+
   /* USER CODE END DMA2_Stream4_IRQn 1 */
 }
 

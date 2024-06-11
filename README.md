@@ -1,26 +1,8 @@
-# Challenger NA Main yasuo
-# Expected
+# STM32F429I_DISCO_REV_E01 TBS
 
-It should be (i ask my nuts and say it will be able ):
-* a simple osciloscope with 100kHz of max freq sample for every type of signals 
-* at least 1MHz of clk signals (square with only 2 states)
-* include a simple wave generator
-* include the CMSIS DSP for fourier analyses and digital filtering
+The default IDE is set to STM32CubeIDE, to change IDE open the STM32F429I_DISCO_REV_E01.ioc with STM32CubeMX and select from the supported IDEs (EWARM from version 8.50.9, MDK-ARM, and STM32CubeIDE). Supports flashing of the STM32F429I_DISCO_REV_E01 board directly from TouchGFX Designer using GCC and STM32CubeProgrammer. Flashing the board requires STM32CubeProgrammer which can be downloaded from the ST webpage. 
 
-This is the frist prototype, the end can be able to be ported to a BLE MCU based (i got in the eye the STM32WB55xxx with my pcb design)
+This TBS is configured for 320 x 240 pixels 16bpp screen resolution.  
 
-
- # STM32 based Osciloscope
-This is a design for a STM discovery board letting you to analyse how does AC/DC signals is.
-
-## Features
-* Up to 100kHz bandwidth with 0.73mV resolution in AC signals
-* Up to 1MHz bandwidth for DC signals
-* Adjustable zoom for amplitude and time
-
-## How it works
-Using a RTOS (freertos cmsis v1.0) and DMA technologies this osciloscope can plot with very high acurrency in voltages and time terms.
-There is 3 principales routines
-* ADC task: Controls the DMA for the ADC and manage the auto start for prevent data losses.
-* DAC task: Controls the DAC signal generator for adjusting the frequency and signal type
-* Graphichs task: Controls the plot window for the signal's data and react to the buttons for adjusting the DAC configuration
+Performance testing can be done using the GPIO pins designated with the following signals: VSYNC_FREQ  - Pin PE2, RENDER_TIME - Pin PE3, FRAME_RATE  - Pin PE4, MCU_ACTIVE  - Pin PE5
+ 
