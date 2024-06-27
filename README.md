@@ -1,7 +1,7 @@
 
 In this project, an oscilloscope has been developed using the STM32F429 microcontroller. The device features a graphical user interface (GUI) based on TouchGFX and offers advanced capabilities such as signal generation and signal analysis through Fast Fourier Transform (FFT) implemented with CMSIS DSP.
 
-** Main Features
+*Main Features
 Sampling Frequency: Up to 1 MHz
 Resolution: 12 bits
 Signal Generation: Up to 100 kHz
